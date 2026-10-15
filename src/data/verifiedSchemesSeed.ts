@@ -1,0 +1,719 @@
+import type { SchemeRecord } from '../types';
+
+const RAW_VERIFIED_SCHEMES_SEED = [
+  // 1. SCHOLARSHIP: Rajarshi Shahu EBC (MahaDBT)
+  {
+    id: 'sch-mah-ebc',
+    slug: 'rajarshi-shahu-ebc',
+    title: {
+      en: 'Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulkh Shishyavrutti (EBC Fee Waiver)',
+      mr: 'राजर्षी छत्रपती शाहू महाराज शिक्षण शुल्क शिष्यवृत्ती योजना (EBC)',
+      hi: 'राजर्षि छत्रपति शाहू महाराज शिक्षण शुल्क छात्रवृत्ति योजना (ईबीसी)'
+    },
+    shortDescription: {
+      en: '50% tuition and examination fee assistance for economically backward class students in professional courses.',
+      mr: 'व्यावसायिक व तंत्रशिक्षण अभ्यासक्रमात शिकणाऱ्या आर्थिकदृष्ट्या दुर्बल घटकातील विद्यार्थ्यांसाठी ५०% शिक्षण शुल्क प्रतिपूर्ती.',
+      hi: 'व्यावसायिक पाठ्यक्रमों में अध्ययनरत आर्थिक रूप से कमजोर वर्ग के छात्रों हेतु 50% शिक्षण शुल्क प्रतिपूर्ति।'
+    },
+    category: 'scholarships',
+    department: 'Directorate of Higher & Technical Education',
+    issuingOrganization: 'Higher & Technical Education Dept, Govt of Maharashtra',
+    level: 'Maharashtra',
+    status: 'Open',
+    applicationOpeningDate: '2026-08-01',
+    applicationDeadline: '2026-11-30',
+    amountVerified: true,
+    benefits: {
+      en: [
+        '50% reimbursement of Government approved Tuition Fee and Exam Fee.',
+        'Direct transfer to institute through MahaDBT escrow mechanism.'
+      ],
+      mr: [
+        'शासनाने मंजूर केलेल्या शिक्षण व परीक्षा शुल्काची ५०% प्रतिपूर्ती.',
+        'MahaDBT प्रणालीद्वारे थेट महाविद्यालय खात्यात रक्कम जमा.'
+      ],
+      hi: [
+        'सरकारी स्वीकृत शिक्षण शुल्क और परीक्षा शुल्क की 50% प्रतिपूर्ति।',
+        'MahaDBT प्रणाली के माध्यम से सीधे कॉलेज खाते में स्थानांतरण।'
+      ]
+    },
+    eligibilityCriteria: {
+      en: [
+        'Candidate must be a Domicile of Maharashtra.',
+        'Total Annual Family Income must not exceed ₹8,00,000.',
+        'Admission must be through Centralized Admission Process (CAP round).',
+        'Minimum 50% marks in the preceding qualifying examination.'
+      ],
+      mr: [
+        'विद्यार्थी महाराष्ट्र राज्याचा अधिवासी (Domicile) असणे बंधनकारक.',
+        'कौटुंबिक वार्षिक उत्पन्न ₹८ लाखांपेक्षा जास्त नसावे.',
+        'प्रवेश केंद्रीभूत प्रवेश प्रक्रियेद्वारे (CAP Round) झालेला असावा.',
+        'मागील परीक्षेत किमान ५०% गुण आवश्यक.'
+      ],
+      hi: [
+        'उम्मीदवार का महाराष्ट्र राज्य का मूल निवासी होना अनिवार्य है।',
+        'कुल पारिवारिक वार्षिक आय ₹8,00,000 से अधिक न हो।',
+        'प्रवेश केंद्रीकृत प्रवेश प्रक्रिया (CAP राउंड) के तहत हुआ हो।',
+        'पिछली परीक्षा में न्यूनतम 50% अंक आवश्यक।'
+      ]
+    },
+    requiredDocuments: {
+      en: [
+        'Tahsildar Income Certificate (Current Financial Year)',
+        'Maharashtra Domicile Certificate',
+        'CAP Admission Allotment Letter',
+        'Previous Year Marksheet',
+        'College Bonafide Certificate'
+      ],
+      mr: [
+        'तहसीलदार उत्पन्नाचा दाखला (चालू आर्थिक वर्ष)',
+        'महाराष्ट्र अधिवास प्रमाणपत्र (Domicile)',
+        'कॅप (CAP) प्रवेश वाटप पत्र',
+        'मागील वर्षाची गुणपत्रिका',
+        'महाविद्यालय बोनाफाईड प्रमाणपत्र'
+      ],
+      hi: [
+        'तहसीलदार आय प्रमाण पत्र (चालू वित्तीय वर्ष)',
+        'महाराष्ट्र मूल निवास प्रमाण पत्र (डोमिसाइल)',
+        'CAP प्रवेश आवंटन पत्र',
+        'पिछली परीक्षा की अंकतालिका',
+        'कॉलेज बोनाफाइड प्रमाण पत्र'
+      ]
+    },
+    requiredDocCodes: ['income_cert', 'domicile_cert', 'marksheet_12'],
+    renewalRules: {
+      en: 'Must pass subsequent semester/year exams without backlogs to retain renewal.',
+      mr: 'कोणत्याही विषयात अनुत्तीर्ण न होता उत्तीर्ण होणे आवश्यक.',
+      hi: 'बिना बैकलाग के उत्तीर्ण होना अनिवार्य।'
+    },
+    applicationSteps: {
+      en: [
+        'Register with verified mobile number on MahaDBT portal.',
+        'Complete Profile section and upload Tahsildar Income and Domicile certificates.',
+        'Select Directorate of Higher Education -> Rajarshi Shahu EBC scheme.',
+        'Submit for College Verification and note Application ID.'
+      ],
+      mr: [
+        'MahaDBT पोर्टलवर नोंदणी करा.',
+        'प्रोफाइलमध्ये उत्पन्न व अधिवास प्रमाणपत्र तपशील भरा.',
+        'उच्च व तंत्र शिक्षण संचालनालय निवडून राजर्षी शाहू EBC योजनेवर अर्ज करा.',
+        'महाविद्यालय छाननीसाठी अर्ज पाठवा.'
+      ],
+      hi: [
+        'MahaDBT पोर्टल पर पंजीकरण करें।',
+        'प्रोफाइल में आय व निवास विवरण दर्ज करें।',
+        'उच्च शिक्षा निदेशालय में जाकर राजर्षि शाहू योजना चुनें।',
+        'सत्यापन हेतु जमा करें।'
+      ]
+    },
+    officialUrl: 'https://mahadbt.maharashtra.gov.in',
+    officialSource: 'Govt Resolution No. TEM-2018/CR-140/TE-4, Maharashtra Gazette',
+    lastVerifiedDate: '2026-10-10',
+    tags: ['scholarship', 'mahadbt', 'ebc', 'engineering', 'diploma'],
+    rules: {
+      allowedStates: ['Maharashtra'],
+      maxFamilyIncome: 800000,
+      minMarksPercentage: 50,
+      allowedEducationLevels: ['Diploma', 'Undergraduate', 'Postgraduate', 'Engineering', 'Medical'],
+      requiredDocCodes: ['income_cert', 'domicile_cert', 'marksheet_12']
+    },
+    isPopular: true
+  },
+
+  // 2. SCHOLARSHIP: AICTE Pragati for Girls
+  {
+    id: 'sch-aicte-pragati',
+    slug: 'aicte-pragati-scholarship',
+    title: {
+      en: 'AICTE Pragati Scholarship Scheme for Girl Students (Technical Degree & Diploma)',
+      mr: 'एआयसीटीई प्रगती शिष्यवृत्ती योजना (मुलींसाठी तंत्रशिक्षण)',
+      hi: 'एआईसीटीई प्रगति छात्रवृत्ति योजना (छात्राओं हेतु तकनीकी शिक्षा)'
+    },
+    shortDescription: {
+      en: '₹50,000 per annum grant for meritorious female students admitted to first-year AICTE-approved engineering and diploma programs.',
+      mr: 'एआयसीटीई मान्यताप्राप्त अभियांत्रिकी व पदविका अभ्यासक्रमात प्रथम वर्षात प्रवेश घेतलेल्या गुणवंत मुलींना दरवर्षी ₹५०,००० साहाय्य.',
+      hi: 'एआईसीटीई मान्यता प्राप्त इंजीनियरिंग एवं डिप्लोमा पाठ्यक्रमों की प्रथम वर्ष की छात्राओं को प्रतिवर्ष ₹50,000 की वित्तीय सहायता।'
+    },
+    category: 'scholarships',
+    department: 'All India Council for Technical Education',
+    issuingOrganization: 'Ministry of Education & AICTE, Govt of India',
+    level: 'Central',
+    status: 'Open',
+    applicationOpeningDate: '2026-07-15',
+    applicationDeadline: '2026-10-31',
+    amountVerified: true,
+    benefits: {
+      en: [
+        '₹50,000 per year credited directly to student bank account via DBT.',
+        'Continuation for complete course duration (max 4 years degree, 3 years diploma).'
+      ],
+      mr: [
+        'दरवर्षी ₹५०,००० थेट बँक खात्यात डीबीटीद्वारे जमा.',
+        'पदवीसाठी कमाल ४ वर्षे, पदविकेसाठी ३ वर्षे लाभ.'
+      ],
+      hi: [
+        'डीबीटी के माध्यम से सीधे बैंक खाते में ₹50,000 प्रतिवर्ष।',
+        'पाठ्यक्रम की पूरी अवधि तक निरंतरता।'
+      ]
+    },
+    eligibilityCriteria: {
+      en: [
+        'Female candidates only.',
+        'Admitted to 1st year Degree/Diploma course in an AICTE approved institution.',
+        'Family income from all sources must not exceed ₹8,00,000 per annum.',
+        'Maximum 2 girl children per family eligible.'
+      ],
+      mr: [
+        'केवळ विद्यार्थिनींसाठी पात्र.',
+        'एआयसीटीई मान्यताप्राप्त संस्थेत प्रथम वर्षात प्रवेश घेतलेला असावा.',
+        'कौटुंबिक वार्षिक उत्पन्न ₹८ लाखांपेक्षा जास्त नसावे.',
+        'एका कुटुंबातील कमाल २ मुलींना लाभ मिळू शकतो.'
+      ],
+      hi: [
+        'केवल छात्राओं के लिए पात्र।',
+        'एआईसीटीई स्वीकृत संस्थान में प्रथम वर्ष में प्रवेश लिया हो।',
+        'वार्षिक पारिवारिक आय ₹8,00,000 से कम हो।'
+      ]
+    },
+    requiredDocuments: {
+      en: [
+        '10th and 12th Marksheets',
+        'Admission letter from AICTE approved institute',
+        'Income Certificate of Parents (Revenue Authority)',
+        'Bonafide Certificate on institute letterhead'
+      ],
+      mr: [
+        '१० वी व १२ वी गुणपत्रिका',
+        'महाविद्यालय प्रवेश वाटप पत्र',
+        'सक्षम प्राधिकरणाचे उत्पन्न प्रमाणपत्र',
+        'महाविद्यालयाचे बोनाफाईड प्रमाणपत्र'
+      ],
+      hi: [
+        '10वीं एवं 12वीं की अंकतालिका',
+        'प्रवेश आवंटन पत्र',
+        'सक्षम अधिकारी द्वारा प्रदत्त आय प्रमाण पत्र',
+        'संस्थान का बोनाफाइड प्रमाण पत्र'
+      ]
+    },
+    requiredDocCodes: ['marksheet_10', 'marksheet_12', 'income_cert'],
+    applicationSteps: {
+      en: [
+        'Log in to National Scholarship Portal (NSP: scholarships.gov.in).',
+        'Apply under AICTE section -> Pragati Scholarship.',
+        'Institute Nodal Officer verifies application digitally.'
+      ],
+      mr: [
+        'नॅशनल स्कॉलरशिप पोर्टलवर (NSP) अर्ज भरा.',
+        'एआयसीटीई विभागांतर्गत प्रगती योजना निवडा.',
+        'महाविद्यालय नोडल अधिकाऱ्याकडून डिजिटल पडताळणी पूर्ण करा.'
+      ],
+      hi: [
+        'राष्ट्रीय छात्रवृत्ति पोर्टल (NSP) पर आवेदन करें।',
+        'प्रगति छात्रवृत्ति योजना का चयन करें।'
+      ]
+    },
+    officialUrl: 'https://scholarships.gov.in',
+    officialSource: 'AICTE Notification F.No. 1-104/AICTE/PGRC/Pragati-Saksham/2026',
+    lastVerifiedDate: '2026-10-12',
+    tags: ['scholarship', 'aicte', 'nsp', 'girls', 'engineering'],
+    rules: {
+      allowedGenders: ['Female'],
+      maxFamilyIncome: 800000,
+      allowedEducationLevels: ['Diploma', 'Undergraduate', 'Engineering'],
+      requiredDocCodes: ['marksheet_10', 'marksheet_12', 'income_cert']
+    },
+    isPopular: true
+  },
+
+  // 3. FARMERS: PM-KISAN Samman Nidhi
+  {
+    id: 'sch-pm-kisan',
+    slug: 'pm-kisan-samman-nidhi',
+    title: {
+      en: 'Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)',
+      mr: 'प्रधानमंत्री किसान सन्मान निधी (PM-KISAN)',
+      hi: 'प्रधानमंत्री किसान सम्मान निधि (पीएम-किसान)'
+    },
+    shortDescription: {
+      en: 'Direct income support of ₹6,000 per year in three equal 4-monthly installments of ₹2,000 for all landholding farmer families.',
+      mr: 'जमीनधारक शेतकरी कुटुंबांना दरवर्षी ₹६,००० चे थेट उत्पन्न साहाय्य (दर ४ महिन्यांनी ₹२,००० चे तीन हप्ते).',
+      hi: 'भूमिधारक किसान परिवारों को प्रतिवर्ष ₹6,000 की प्रत्यक्ष आय सहायता (₹2,000 की तीन किस्तों में)।'
+    },
+    category: 'farmers',
+    department: 'Department of Agriculture & Farmers Welfare',
+    issuingOrganization: 'Ministry of Agriculture, Govt of India',
+    level: 'Central',
+    status: 'Open',
+    applicationOpeningDate: '2019-02-01',
+    applicationDeadline: undefined, // Continuous rolling registration
+    amountVerified: true,
+    benefits: {
+      en: [
+        '₹6,000 per year deposited directly into bank accounts via Aadhaar-linked DBT.',
+        'Installments released every 4 months: April-July, August-November, December-March.'
+      ],
+      mr: [
+        'वर्षाला ₹६,००० थेट बँक खात्यात जमा.',
+        'प्रत्येकी ₹२,००० चे तीन समान हप्ते.'
+      ],
+      hi: [
+        '₹6,000 प्रति वर्ष सीधे आधार लिंक बैंक खाते में अंतरित।',
+        '₹2,000 की तीन समान किस्तें।'
+      ]
+    },
+    eligibilityCriteria: {
+      en: [
+        'Farmer families holding cultivable land in their names.',
+        'Land ownership records (e.g. 7/12 extract in Maharashtra) verified.',
+        'Institutional landholders and income tax payers are excluded.'
+      ],
+      mr: [
+        'स्वतःच्या नावावर लागवडीयोग्य शेतजमीन असलेले शेतकरी.',
+        '७/१२ व ८-अ उतारा सत्यापित असणे आवश्यक.',
+        'संस्थात्मक जमीनधारक व आयकर भरणारे कुटुंब अपात्र.'
+      ],
+      hi: [
+        'जिनके नाम पर कृषि योग्य भूमि पंजीकृत हो।',
+        'संस्थागत भूमिधारक और आयकर दाता अपात्र।'
+      ]
+    },
+    requiredDocuments: {
+      en: [
+        'Land Ownership Record (7/12 & 8-A Extract / Land Record)',
+        'Bank Account passbook linked with Aadhaar NPCI mapper',
+        'Mobile number for e-KYC'
+      ],
+      mr: [
+        'जमीन मालकीचा दाखला (७/१२ व ८-अ उतारा)',
+        'डीबीटी सक्षम बँक पासबुक',
+        'ई-केवायसी साठी मोबाईल क्रमांक'
+      ],
+      hi: [
+        'भू-अभिलेख दस्तावेज (खसरा/खतौनी/7-12)',
+        'बैंक खाता विवरण',
+        'ई-केवाईसी हेतु मोबाइल'
+      ]
+    },
+    requiredDocCodes: ['ration_card'],
+    applicationSteps: {
+      en: [
+        'Visit PM-KISAN portal (pmkisan.gov.in) -> "New Farmer Registration".',
+        'Enter State, District, Sub-District, and Land Khata/Survey number.',
+        'Complete biometric or OTP e-KYC on the portal.'
+      ],
+      mr: [
+        'pmkisan.gov.in वर जाऊन "New Farmer Registration" निवडा.',
+        'राज्य, जिल्हा आणि ७/१२ सर्वे नंबर भरा.',
+        'पोर्टलवर ई-केवायसी पूर्ण करा.'
+      ],
+      hi: [
+        'pmkisan.gov.in पर जाएं और पंजीकरण करें।',
+        'भूमि का खसरा विवरण दर्ज करें।'
+      ]
+    },
+    officialUrl: 'https://pmkisan.gov.in',
+    officialSource: 'Ministry of Agriculture Operational Guidelines, Govt of India',
+    lastVerifiedDate: '2026-10-05',
+    tags: ['farmers', 'kisan', 'agriculture', 'central', 'subsidy'],
+    rules: {
+      farmerOnly: true,
+      allowedFarmerStatuses: ['Small & Marginal (<2 Hectares)', 'Medium/Large Farmer'],
+      requiredDocCodes: ['ration_card']
+    },
+    isPopular: true
+  },
+
+  // 4. FARMERS: Namo Shetkari Mahasanman Nidhi (Maharashtra add-on)
+  {
+    id: 'sch-mah-namo-shetkari',
+    slug: 'namo-shetkari-mahasanman-nidhi',
+    title: {
+      en: 'Namo Shetkari Mahasanman Nidhi Yojana (Maharashtra State ₹6,000 Add-on)',
+      mr: 'नमो शेतकरी महासन्मान निधी योजना (महाराष्ट्र शासन ₹६,००० अतिरिक्त)',
+      hi: 'नमो शेतकारी महासम्मान निधि योजना (महाराष्ट्र राज्य अतिरिक्त ₹6,000)'
+    },
+    shortDescription: {
+      en: 'Maharashtra state government supplementary financial benefit of ₹6,000/year to all PM-KISAN verified farmers, making total annual aid ₹12,000.',
+      mr: 'महाराष्ट्र शासनातर्फे PM-KISAN योजनेच्या पात्र शेतकऱ्यांना अतिरिक्त ₹६,००० (एकूण ₹१२,००० प्रतिवर्ष).',
+      hi: 'महाराष्ट्र सरकार द्वारा पीएम-किसान के पात्र किसानों को अतिरिक्त ₹6,000 (कुल ₹12,000 प्रति वर्ष)।'
+    },
+    category: 'farmers',
+    department: 'Department of Agriculture, Maharashtra',
+    issuingOrganization: 'Agriculture & Revenue Dept, Govt of Maharashtra',
+    level: 'Maharashtra',
+    status: 'Open',
+    amountVerified: true,
+    benefits: {
+      en: ['₹6,000/year additional payment in three installments of ₹2,000 matching PM-KISAN schedule.'],
+      mr: ['वर्षाला ₹६,००० अतिरिक्त साहाय्य (प्रत्येकी ₹२,००० चे तीन हप्ते).'],
+      hi: ['प्रति वर्ष ₹6,000 अतिरिक्त वित्तीय सहायता।']
+    },
+    eligibilityCriteria: {
+      en: [
+        'Must be a verified beneficiary of PM-KISAN in Maharashtra.',
+        'Agricultural land located within Maharashtra State.'
+      ],
+      mr: [
+        'महाराष्ट्रातील PM-KISAN चा मान्यताप्राप्त लाभार्थी असणे आवश्यक.',
+        'शेतजमीन महाराष्ट्र राज्यात असणे अनिवार्य.'
+      ],
+      hi: [
+        'महाराष्ट्र के पीएम-किसान योजना के सत्यापित लाभार्थी।'
+      ]
+    },
+    requiredDocuments: {
+      en: ['PM-KISAN Registration ID', 'Land 7/12 Extract', 'Aadhaar Seeded Bank Account'],
+      mr: ['पीएम-किसान नोंदणी क्रमांक', '७/१२ उतारा', 'बँक खाते'],
+      hi: ['पीएम-किसान पंजीकरण संख्या', '7/12 भू-अभिलेख']
+    },
+    requiredDocCodes: ['ration_card'],
+    officialUrl: 'https://krishi.maharashtra.gov.in',
+    officialSource: 'Maharashtra Cabinet Resolution No. AGRI-2023/CR-88',
+    lastVerifiedDate: '2026-10-08',
+    tags: ['farmers', 'mahadbt', 'maharashtra', 'agriculture'],
+    rules: {
+      allowedStates: ['Maharashtra'],
+      farmerOnly: true,
+      requiredDocCodes: ['ration_card']
+    },
+    isPopular: true
+  },
+
+  // 5. WOMEN WELFARE: Mukhyamantri Majhi Ladki Bahin Yojana
+  {
+    id: 'sch-ladki-bahin',
+    slug: 'majhi-ladki-bahin-yojana',
+    title: {
+      en: 'Mukhyamantri Majhi Ladki Bahin Yojana (Women Financial Support)',
+      mr: 'मुख्यमंत्री माझी लाडकी बहीण योजना (महिला आर्थिक साहाय्य)',
+      hi: 'मुख्यमंत्री माझी लाडकी बहिन योजना (महिला वित्तीय सहायता)'
+    },
+    shortDescription: {
+      en: 'Direct financial assistance of ₹1,500 per month (₹18,000 annually) for eligible women aged 21 to 65 years residing in Maharashtra.',
+      mr: 'महाराष्ट्र राज्यातील २१ ते ६५ वर्षे वयोगटातील पात्र महिलांसाठी दरमहा ₹१,५०० (वार्षिक ₹१८,०००) थेट आर्थिक साहाय्य.',
+      hi: 'महाराष्ट्र की 21 से 65 वर्ष आयु वर्ग की पात्र महिलाओं को प्रतिमाह ₹1,500 (वार्षिक ₹18,000) की प्रत्यक्ष सहायता।'
+    },
+    category: 'women',
+    department: 'Women and Child Development Department, Maharashtra',
+    issuingOrganization: 'Govt of Maharashtra',
+    level: 'Maharashtra',
+    status: 'Open',
+    amountVerified: true,
+    benefits: {
+      en: ['₹1,500 monthly deposited directly into the beneficiary woman’s personal bank account.'],
+      mr: ['दरमहा ₹१,५०० थेट महिलांच्या वैयक्तिक बँक खात्यात जमा.'],
+      hi: ['प्रतिमाह ₹1,500 सीधे महिला के बैंक खाते में जमा।']
+    },
+    eligibilityCriteria: {
+      en: [
+        'Resident of Maharashtra State.',
+        'Married, widowed, divorced, or single women aged 21 to 65 years.',
+        'Combined annual family income must not exceed ₹2,50,000.',
+        'No family member should be an income tax payer or regular government employee.'
+      ],
+      mr: [
+        'महाराष्ट्र राज्याची अधिवासी (Domicile) महिला.',
+        'वय वर्षे २१ ते ६५ दरम्यान असावे.',
+        'कौटुंबिक वार्षिक उत्पन्न ₹२.५० लाखांपेक्षा जास्त नसावे (पिवळे/केशरी रेशन कार्डधारक पात्र).',
+        'कुटुंबातील कोणीही आयकरदाता अथवा नियमित शासकीय कर्मचारी नसावा.'
+      ],
+      hi: [
+        'महाराष्ट्र राज्य की मूल निवासी महिला।',
+        'आयु 21 से 65 वर्ष के मध्य हो।',
+        'पारिवारिक वार्षिक आय ₹2.5 लाख से कम हो।'
+      ]
+    },
+    requiredDocuments: {
+      en: [
+        'Yellow or Saffron Ration Card (Proof of income)',
+        'Maharashtra Domicile Certificate or Voter ID card',
+        'Self-declaration of income under ₹2.5 Lakhs',
+        'Bank Passbook in beneficiary name'
+      ],
+      mr: [
+        'पिवळे किंवा केशरी रेशन कार्ड',
+        'अधिवास प्रमाणपत्र किंवा मतदार ओळखपत्र',
+        'हमीपत्र (स्वयंघोषणा पत्र)',
+        'महिलांच्या नावाचे बँक पासबुक'
+      ],
+      hi: [
+        'राशन कार्ड (पीला या केसरी)',
+        'मूल निवास प्रमाण या मतदाता पहचान पत्र',
+        'स्व-घोषणा पत्र',
+        'बैंक खाता पासबुक'
+      ]
+    },
+    requiredDocCodes: ['ration_card', 'domicile_cert'],
+    officialUrl: 'https://ladakibahin.maharashtra.gov.in',
+    officialSource: 'Govt of Maharashtra GR No. WCD-2024/CR-101/KA-2',
+    lastVerifiedDate: '2026-10-14',
+    tags: ['women', 'maharashtra', 'direct-benefit', 'monthly-pension'],
+    rules: {
+      allowedGenders: ['Female'],
+      minAge: 21,
+      maxAge: 65,
+      allowedStates: ['Maharashtra'],
+      maxFamilyIncome: 250000,
+      requiredDocCodes: ['ration_card', 'domicile_cert']
+    },
+    isPopular: true
+  },
+
+  // 6. HEALTHCARE: Ayushman Bharat PM-JAY
+  {
+    id: 'sch-pm-jay',
+    slug: 'ayushman-bharat-pmjay',
+    title: {
+      en: 'Ayushman Bharat Pradhan Mantri Jan Arogya Yojana (PM-JAY Health Cover)',
+      mr: 'आयुष्मान भारत प्रधानमंत्री जन आरोग्य योजना (PM-JAY)',
+      hi: 'आयुष्मान भारत प्रधानमंत्री जन आरोग्य योजना (पीएम-जय)'
+    },
+    shortDescription: {
+      en: 'Cashless health insurance coverage up to ₹5,00,000 per family per year for secondary and tertiary care hospitalization in empaneled hospitals.',
+      mr: 'पात्र कुटुंबांसाठी दरवर्षी ₹५ लाखांपर्यंत मोफत व कॅशलेस वैद्यकीय उपचार.',
+      hi: 'पात्र परिवारों को प्रतिवर्ष ₹5 लाख तक का निःशुल्क एवं कैशलेस अस्पताल उपचार।'
+    },
+    category: 'healthcare',
+    department: 'National Health Authority (NHA)',
+    issuingOrganization: 'Ministry of Health and Family Welfare, Govt of India',
+    level: 'Central',
+    status: 'Open',
+    amountVerified: true,
+    benefits: {
+      en: [
+        '₹5 Lakh cashless health cover per family per year.',
+        'Covers 1,900+ procedures including cardiac surgeries, oncology, joint replacement, and ICU treatments.'
+      ],
+      mr: [
+        'कुटुंबासाठी दरवर्षी ₹५ लाखांचे मोफत उपचार.',
+        'हृदयरोग, कर्करोग, मेंदूचे आजार व मोठ्या शस्त्रक्रियांचा समावेश.'
+      ],
+      hi: [
+        'प्रति परिवार प्रति वर्ष ₹5 लाख तक का कैशलेस इलाज।',
+        '1,900 से अधिक चिकित्सा प्रक्रियाओं पर मान्य।'
+      ]
+    },
+    eligibilityCriteria: {
+      en: [
+        'Identified deprived and occupational rural/urban households as per SECC / Ration Card databases.',
+        'Senior citizens aged 70 years and above are now eligible regardless of income limit under PM-JAY Senior extension.'
+      ],
+      mr: [
+        'सामाजिक व आर्थिक जनगणनेनुसार पात्र कुटुंब किंवा प्राधान्य रेशन कार्डधारक.',
+        '७० वर्षे व त्यावरील सर्व ज्येष्ठ नागरिकांसाठी उत्पन्नाची अट शिथिल.'
+      ],
+      hi: [
+        'सामाजिक आर्थिक जनगणना एवं राशन कार्ड के तहत चिन्हित पात्र परिवार।'
+      ]
+    },
+    requiredDocuments: {
+      en: ['Ration Card', 'Any Government Photo ID', 'Aadhaar for e-KYC'],
+      mr: ['शिधापत्रिका (रेशन कार्ड)', 'शासकीय ओळखपत्र'],
+      hi: ['राशन कार्ड', 'सरकारी फोटो पहचान पत्र']
+    },
+    requiredDocCodes: ['ration_card'],
+    officialUrl: 'https://beneficiary.nha.gov.in',
+    officialSource: 'National Health Authority Operational Manual, Govt of India',
+    lastVerifiedDate: '2026-10-11',
+    tags: ['healthcare', 'central', 'insurance', 'cashless', 'pmjay'],
+    rules: {
+      requiredDocCodes: ['ration_card']
+    },
+    isPopular: true
+  },
+
+  // 7. SENIOR CITIZENS: Shravanbal Seva State Pension
+  {
+    id: 'sch-shravanbal-pension',
+    slug: 'shravanbal-seva-rajya-nivruttivetan',
+    title: {
+      en: 'Shravanbal Seva Rajya Nivruttivetan Yojana (Senior Citizen Pension)',
+      mr: 'श्रावणबाळ सेवा राज्य निवृत्तीवेतन योजना (ज्येष्ठ नागरिक पेन्शन)',
+      hi: 'श्रवणबाल सेवा राज्य निवृत्तिवेतन योजना (वृद्धावस्था पेंशन)'
+    },
+    shortDescription: {
+      en: 'Monthly pension of ₹1,500 for destitute elderly citizens aged 65 years and above in Maharashtra.',
+      mr: 'महाराष्ट्रातील ६५ वर्षे व त्यावरील निराधार ज्येष्ठ नागरिकांना दरमहा ₹१,५०० निवृत्तीवेतन.',
+      hi: 'महाराष्ट्र के 65 वर्ष या अधिक आयु के निराधार वृद्ध नागरिकों को प्रतिमाह ₹1,500 पेंशन।'
+    },
+    category: 'seniors',
+    department: 'Social Justice & Special Assistance Department, Maharashtra',
+    issuingOrganization: 'Govt of Maharashtra',
+    level: 'Maharashtra',
+    status: 'Open',
+    amountVerified: true,
+    benefits: {
+      en: ['₹1,500 per month credited directly to bank account.'],
+      mr: ['दरमहा ₹१,५०० थेट बँक खात्यात जमा.'],
+      hi: ['प्रतिमाह ₹1,500 पेंशन।']
+    },
+    eligibilityCriteria: {
+      en: [
+        'Age must be 65 years or above.',
+        'Resident of Maharashtra for at least 15 years.',
+        'Annual family income must not exceed ₹21,000 (Category A) or ₹50,000 (Category B).'
+      ],
+      mr: [
+        'वय वर्षे ६५ किंवा त्यापेक्षा जास्त असणे आवश्यक.',
+        'महाराष्ट्र राज्यात किमान १५ वर्षांपासून वास्तव्यास असणारा रहिवासी.',
+        'कौटुंबिक वार्षिक उत्पन्न ₹२१,००० (गट अ) किंवा दारिद्र्यरेषेखालील (गट ब).'
+      ],
+      hi: [
+        'आयु 65 वर्ष या अधिक हो।',
+        'महाराष्ट्र में 15 वर्ष से अधिक निवास।'
+      ]
+    },
+    requiredDocuments: {
+      en: ['Age proof (School Leaving / Birth cert)', 'Income Certificate', '15-year Domicile proof', 'Ration card'],
+      mr: ['वयाचा दाखला', 'तहसीलदार उत्पन्नाचा दाखला', 'अधिवास प्रमाणपत्र', 'रेशन कार्ड'],
+      hi: ['आयु प्रमाण पत्र', 'आय प्रमाण पत्र', 'निवास प्रमाण पत्र']
+    },
+    requiredDocCodes: ['income_cert', 'domicile_cert', 'ration_card'],
+    officialUrl: 'https://sjsa.maharashtra.gov.in',
+    officialSource: 'Social Justice Department GR No. NIR-2023/CR-54/MA-2',
+    lastVerifiedDate: '2026-10-09',
+    tags: ['seniors', 'pension', 'maharashtra', 'social-justice'],
+    rules: {
+      minAge: 65,
+      allowedStates: ['Maharashtra'],
+      maxFamilyIncome: 50000,
+      requiredDocCodes: ['income_cert', 'domicile_cert', 'ration_card']
+    },
+    isPopular: false
+  },
+
+  // 8. DISABILITY: Sanjay Gandhi Niradhar / Divyangjan Welfare
+  {
+    id: 'sch-sanjay-gandhi-niradhar',
+    slug: 'sanjay-gandhi-niradhar-yojana',
+    title: {
+      en: 'Sanjay Gandhi Niradhar Anudan Yojana (Disability & Destitute Pension)',
+      mr: 'संजय गांधी निराधार अनुदान योजना (दिव्यांग व निराधार पेन्शन)',
+      hi: 'संजय गांधी निराधार अनुदान योजना (दिव्यांग पेंशन)'
+    },
+    shortDescription: {
+      en: 'Monthly pension of ₹1,500 (single person) or ₹2,500 (family with two or more beneficiaries) for persons with 40%+ disability, destitute, or blind individuals.',
+      mr: '४०% पेक्षा जास्त दिव्यांगत्व, अंध किंवा निराधार व्यक्तींसाठी दरमहा ₹१,५०० ते ₹२,५०० थेट अनुदान.',
+      hi: '40% से अधिक दिव्यांगता वाले व्यक्तियों हेतु प्रतिमाह ₹1,500 से ₹2,500 की वित्तीय सहायता।'
+    },
+    category: 'disability',
+    department: 'Revenue & Social Justice Department, Maharashtra',
+    issuingOrganization: 'Govt of Maharashtra',
+    level: 'Maharashtra',
+    status: 'Open',
+    amountVerified: true,
+    benefits: {
+      en: ['₹1,500/month for single person; ₹2,500/month for family with two eligible disabled individuals.'],
+      mr: ['एका व्यक्तीसाठी ₹१,५००/महिना; कुटुंबात दोन किंवा अधिक दिव्यांग असल्यास ₹२,५००/महिना.'],
+      hi: ['एकल व्यक्ति हेतु ₹1,500/माह; परिवार हेतु ₹2,500/माह।']
+    },
+    eligibilityCriteria: {
+      en: [
+        'Disability percentage must be 40% or more (certified by Civil Surgeon / UDID).',
+        'Resident of Maharashtra for 15+ years.',
+        'Annual family income must not exceed ₹50,000.'
+      ],
+      mr: [
+        'दिव्यांगत्वाचे प्रमाण किमान ४०% किंवा त्याहून अधिक असणे आवश्यक.',
+        'महाराष्ट्रात किमान १५ वर्षे अधिवास.',
+        'कौटुंबिक वार्षिक उत्पन्न ₹५०,००० च्या आत असणे आवश्यक.'
+      ],
+      hi: [
+        'दिव्यांगता न्यूनतम 40% प्रमाणित हो।',
+        'पारिवारिक आय ₹50,000 से कम हो।'
+      ]
+    },
+    requiredDocuments: {
+      en: ['Disability Certificate (Civil Surgeon / UDID Card)', 'Income Certificate', 'Domicile Certificate', 'Bank Passbook'],
+      mr: ['जिल्हा शल्यचिकित्सकांचे दिव्यांगत्व प्रमाणपत्र / UDID कार्ड', 'उत्पन्नाचा दाखला', 'अधिवास दाखला', 'बँक पासबुक'],
+      hi: ['दिव्यांगता प्रमाण पत्र / UDID कार्ड', 'आय प्रमाण पत्र', 'निवास प्रमाण पत्र']
+    },
+    requiredDocCodes: ['income_cert', 'domicile_cert'],
+    officialUrl: 'https://sjsa.maharashtra.gov.in',
+    officialSource: 'Govt of Maharashtra Resolution No. SGN-2023/CR-12/M-3',
+    lastVerifiedDate: '2026-10-09',
+    tags: ['disability', 'divyang', 'pension', 'maharashtra'],
+    rules: {
+      disabilityOnly: true,
+      minDisabilityPercentage: 40,
+      allowedStates: ['Maharashtra'],
+      maxFamilyIncome: 50000,
+      requiredDocCodes: ['income_cert', 'domicile_cert']
+    },
+    isPopular: false
+  },
+
+  // 9. EMPLOYMENT: PMEGP Subsidy
+  {
+    id: 'sch-pmegp-subsidy',
+    slug: 'pmegp-employment-generation',
+    title: {
+      en: 'Prime Minister’s Employment Generation Programme (PMEGP Credit Subsidy)',
+      mr: 'प्रधानमंत्री रोजगार निर्मिती कार्यक्रम (PMEGP कर्ज अनुदान)',
+      hi: 'प्रधानमंत्री रोजगार सृजन कार्यक्रम (PMEGP ऋण सब्सिडी)'
+    },
+    shortDescription: {
+      en: 'Credit-linked subsidy program up to 35% on project cost (up to ₹50 Lakhs manufacturing, ₹20 Lakhs service) for setting up self-employment micro-enterprises.',
+      mr: 'नवीन सूक्ष्म उद्योग व व्यवसाय सुरू करण्यासाठी प्रकल्प खर्चावर १५% ते ३५% पर्यंत सरकारी अनुदान.',
+      hi: 'स्व-रोजगार हेतु सूक्ष्म उद्यम स्थापित करने पर परियोजना लागत पर 15% से 35% तक का सरकारी अनुदान।'
+    },
+    category: 'employment',
+    department: 'Khadi and Village Industries Commission (KVIC)',
+    issuingOrganization: 'Ministry of MSME, Govt of India',
+    level: 'Central',
+    status: 'Open',
+    amountVerified: true,
+    benefits: {
+      en: [
+        '15% to 35% margin money subsidy on project loans.',
+        'Manufacturing projects up to ₹50 Lakhs, Service sector projects up to ₹20 Lakhs.'
+      ],
+      mr: [
+        'प्रकल्प खर्चावर १५% ते ३५% मार्जिन मनी अनुदान.',
+        'उत्पादन क्षेत्रासाठी ₹५० लाखांपर्यंत व सेवा क्षेत्रासाठी ₹२० लाखांपर्यंत प्रकल्प मर्यादा.'
+      ],
+      hi: [
+        'परियोजना लागत पर 15% से 35% तक सब्सिडी।',
+        'विनिर्माण हेतु अधिकतम ₹50 लाख, सेवा हेतु ₹20 लाख।'
+      ]
+    },
+    eligibilityCriteria: {
+      en: [
+        'Any individual above 18 years of age.',
+        'At least 8th pass for projects above ₹10 Lakhs in manufacturing or ₹5 Lakhs in service.',
+        'Only new projects are eligible.'
+      ],
+      mr: [
+        'वय वर्षे १८ पूर्ण असणारी कोणतीही भारतीय व्यक्ती.',
+        'उत्पादन ₹१० लाखांवर किंवा सेवा ₹५ लाखांवरील प्रकल्पासाठी किमान ८ वी उत्तीर्ण आवश्यक.'
+      ],
+      hi: [
+        'न्यूनतम आयु 18 वर्ष।',
+        'नई परियोजनाओं के लिए मान्य।'
+      ]
+    },
+    requiredDocuments: {
+      en: ['Detailed Project Report (DPR)', 'Educational Qualification Certificate', 'Caste / Special category cert if claiming 35%'],
+      mr: ['सविस्तर प्रकल्प अहवाल (DPR)', 'शैक्षणिक प्रमाणपत्र', 'जात प्रमाणपत्र (विशेष सवलतीसाठी)'],
+      hi: ['विस्तृत परियोजना रिपोर्ट (DPR)', 'शैक्षणिक प्रमाण पत्र']
+    },
+    requiredDocCodes: ['domicile_cert'],
+    officialUrl: 'https://www.kviconline.gov.in/pmegp',
+    officialSource: 'Ministry of MSME PMEGP Scheme Guidelines, Govt of India',
+    lastVerifiedDate: '2026-10-07',
+    tags: ['employment', 'business', 'msme', 'subsidy', 'startup'],
+    rules: {
+      minAge: 18,
+      requiredDocCodes: ['domicile_cert']
+    },
+    isPopular: true
+  }
+];
+
+export const VERIFIED_SCHEMES_SEED: SchemeRecord[] = RAW_VERIFIED_SCHEMES_SEED.map((s) => ({
+  ...s,
+  name: s.title,
+  type: s.level === 'Maharashtra' ? 'MahaDBT' : 'Central',
+})) as SchemeRecord[];
+
+export const UNIFIED_SCHEMES_SEED: SchemeRecord[] = VERIFIED_SCHEMES_SEED;

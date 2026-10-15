@@ -12,7 +12,6 @@ import type {
   StudentProfile, 
   StudentNotification,
   SchemeRecord,
-  CitizenProfile,
   DigiLockerSession,
   DigiLockerDocument
 } from './types';

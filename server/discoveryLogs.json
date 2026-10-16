@@ -1,0 +1,39 @@
+[
+  {
+    "id": "log-1792155098709-8j39a",
+    "timestamp": "2026-10-16T12:51:38.709Z",
+    "sourceId": "all",
+    "status": "success",
+    "message": "Discovery cycle completed in 6ms",
+    "details": {
+      "discoveredCount": 2,
+      "autoPublishedCount": 1,
+      "pendingApprovalCount": 0,
+      "totalActiveSchemes": 10
+    }
+  },
+  {
+    "id": "log-1792155098707-rx9ey",
+    "timestamp": "2026-10-16T12:51:38.707Z",
+    "sourceId": "gov-disc-2026-postmatric-obc",
+    "status": "info",
+    "message": "Candidate matched existing scheme \"sch-mah-ebc\" (Similarity: 0%). Updated verification date & official records.",
+    "details": {}
+  },
+  {
+    "id": "log-1792155098706-yok1n",
+    "timestamp": "2026-10-16T12:51:38.706Z",
+    "sourceId": "gov-disc-2026-annapurna",
+    "status": "success",
+    "message": "Auto-published verified government scheme \"Mukhyamantri Annapurna Yojana (3 Free LPG Cylinders per Year)\" into active registry.",
+    "details": {}
+  },
+  {
+    "id": "log-1792155098703-l3riw",
+    "timestamp": "2026-10-16T12:51:38.703Z",
+    "sourceId": "all",
+    "status": "info",
+    "message": "Initiated government scheme discovery synchronization cycle",
+    "details": {}
+  }
+]

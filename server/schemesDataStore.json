@@ -1,5 +1,112 @@
 [
   {
+    "id": "gov-disc-2026-annapurna",
+    "slug": "mukhyamantri-annapurna-yojana",
+    "title": {
+      "en": "Mukhyamantri Annapurna Yojana (3 Free LPG Cylinders per Year)",
+      "mr": "मुख्यमंत्री अन्नपूर्णा योजना (वर्षाला ३ मोफत गॅस सिलिंडर)",
+      "hi": "मुख्यमंत्री अन्नपूर्णा योजना (प्रतिवर्ष 3 मुफ्त एलपीजी सिलेंडर)"
+    },
+    "shortDescription": {
+      "en": "Free 3 LPG domestic gas cylinder refills per financial year for eligible Ladki Bahin and PM Ujjwala beneficiary families in Maharashtra.",
+      "mr": "महाराष्ट्रातील लाडकी बहीण व प्रधानमंत्री उज्ज्वला योजनेतील पात्र लाभार्थी कुटुंबांना दरवर्षी ३ घरगुती गॅस सिलिंडर मोफत रीफिल साहाय्य.",
+      "hi": "महाराष्ट्र में पात्र लाडली बहना एवं उज्ज्वला योजना लाभार्थी परिवारों को प्रति वर्ष 3 मुफ्त गैस सिलेंडर रिफिल।"
+    },
+    "category": "women",
+    "level": "Maharashtra",
+    "department": "Food, Civil Supplies and Consumer Protection Department",
+    "issuingOrganization": "Govt of Maharashtra",
+    "officialUrl": "https://mahafood.gov.in",
+    "officialSource": "Govt Resolution No. ANN-2026/CR-38/CS-21, Food & Civil Supplies Dept",
+    "officialSourceUrl": "https://mahafood.gov.in",
+    "status": "Open",
+    "applicationOpeningDate": "2026-07-01",
+    "benefits": {
+      "en": [
+        "100% subsidy reimbursement for 3 LPG gas cylinder refills per household every year.",
+        "Direct subsidy deposited into Aadhaar-seeded bank account within 48 hours of delivery."
+      ],
+      "mr": [
+        "दर आर्थिक वर्षात ३ घरगुती गॅस सिलिंडर मोफत रीफिल अनुदानाचा लाभ.",
+        "सिलिंडर डिलिव्हरीनंतर ४८ तासांत थेट आधार लिंक बँक खात्यात अनुदान जमा."
+      ],
+      "hi": [
+        "प्रति वित्तीय वर्ष 3 एलपीजी गैस सिलेंडरों के रिफिल हेतु पूर्ण सरकारी सब्सिडी।",
+        "सिलेंडर डिलीवरी के 48 घंटे के भीतर सीधे आधार लिंक बैंक खाते में राशि जमा।"
+      ]
+    },
+    "eligibilityCriteria": {
+      "en": [
+        "Must be an active beneficiary of Mukhyamantri Majhi Ladki Bahin Yojana or PM Ujjwala Yojana.",
+        "Gas connection must be in the name of the female head of the family.",
+        "Family must possess a valid Aadhaar-seeded ration card in Maharashtra."
+      ],
+      "mr": [
+        "मुख्यमंत्री माझी लाडकी बहीण योजना किंवा उज्ज्वला योजनेचे पात्र लाभार्थी असणे आवश्यक.",
+        "घरगुती गॅस कनेक्शन कुटुंबातील महिलेच्या नावावर असणे आवश्यक.",
+        "महाराष्ट्र शासनाचे वैध रेशनकार्ड व आधार बँक सीडिंग असणे बंधनकारक."
+      ],
+      "hi": [
+        "मुख्यमंत्री लाडली बहना अथवा उज्ज्वला योजना का पात्र लाभार्थी होना अनिवार्य।",
+        "गैस कनेक्शन परिवार की महिला सदस्य के नाम पर होना चाहिए।",
+        "आधार से लिंक वैध राशन कार्ड होना अनिवार्य है।"
+      ]
+    },
+    "requiredDocuments": {
+      "en": [
+        "Aadhaar Card",
+        "Ration Card",
+        "LPG Consumer Book / Connection ID",
+        "Bank Passbook"
+      ],
+      "mr": [
+        "आधार कार्ड",
+        "रेशनकार्ड",
+        "गॅस ग्राहक पुस्तक (LPG Passbook)",
+        "बँक पासबुक"
+      ],
+      "hi": [
+        "आधार कार्ड",
+        "राशन कार्ड",
+        "गैस कनेक्शन पासबुक",
+        "बैंक पासबुक"
+      ]
+    },
+    "applicationSteps": {
+      "en": [
+        "Book regular LPG cylinder through registered oil marketing company (Indane/Bharat/HP).",
+        "Receive delivery and pay standard invoice.",
+        "Subsidy amount is automatically refunded directly to Aadhaar-linked bank account via DBT."
+      ],
+      "mr": [
+        "आपल्या गॅस वितरकाकडे (Indane/Bharat/HP) सिलिंडर बुक करा.",
+        "सिलिंडर वितरणावेळी पावती घ्या.",
+        "शासनाकडून थेट बँक खात्यात अनुदान DBT द्वारे परत जमा केले जाईल."
+      ],
+      "hi": [
+        "पंजीकृत मोबाइल नंबर से गैस सिलेंडर बुक करें।",
+        "डिलीवरी प्राप्त करें।",
+        "सब्सिडी की पूर्ण राशि सीधे बैंक खाते में स्वतः वापस आ जाएगी।"
+      ]
+    },
+    "sourceAnnouncementDate": "2026-07-05",
+    "discoveredDate": "2026-10-16",
+    "lastVerifiedDate": "2026-10-16",
+    "tags": [
+      "lpg",
+      "gas",
+      "annapurna",
+      "cylinder",
+      "ladki bahin",
+      "women",
+      "अन्नपूर्णा",
+      "सिलिंडर"
+    ],
+    "confidenceScore": 0.98,
+    "isHighConfidenceOfficial": true,
+    "amountVerified": false
+  },
+  {
     "id": "sch-mah-ebc",
     "slug": "rajarshi-shahu-ebc",
     "title": {
@@ -109,7 +216,7 @@
     },
     "officialUrl": "https://mahadbt.maharashtra.gov.in",
     "officialSource": "Govt Resolution No. TEM-2018/CR-140/TE-4, Maharashtra Gazette",
-    "lastVerifiedDate": "2026-10-10",
+    "lastVerifiedDate": "2026-10-16",
     "tags": [
       "scholarship",
       "mahadbt",
@@ -136,7 +243,8 @@
         "marksheet_12"
       ]
     },
-    "isPopular": true
+    "isPopular": true,
+    "lastUpdatedInSahayakon": "2026-10-16"
   },
   {
     "id": "sch-aicte-pragati",

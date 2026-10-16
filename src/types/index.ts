@@ -275,9 +275,15 @@ export interface SchemeRecord {
   officialUrl: string;
   officialSource?: string;
   lastVerifiedDate: string;
+  lastUpdatedInSahayakon?: string;
+  sourceAnnouncementDate?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  officialSourceUrl?: string;
   tags?: string[];
   rules?: SchemeRule;
   isPopular?: boolean;
+  isRecentlyUpdated?: boolean;
 }
 
 // Backwards compatibility for existing components

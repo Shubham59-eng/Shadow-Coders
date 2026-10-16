@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 import { digiLockerService } from './digilockerService.js';
 import { schemeDb } from './schemeDatabase.js';
 import { notificationService } from './notificationService.js';
+import { schemeDiscoveryService } from './schemeDiscoveryService.js';
 
 dotenv.config();
 
@@ -217,6 +218,43 @@ app.delete('/api/schemes/:id', verifyAdminPin, (req, res) => {
 app.post('/api/schemes/reset', verifyAdminPin, (req, res) => {
   const list = schemeDb.resetDefaults();
   res.json({ success: true, schemes: list });
+});
+
+// ==========================================
+// 4B. SCHEME DISCOVERY & SYNCHRONIZATION ENGINE
+// ==========================================
+app.get('/api/discovery/status', (req, res) => {
+  res.json(schemeDiscoveryService.getStatus());
+});
+
+app.post('/api/discovery/sync', async (req, res) => {
+  const result = await schemeDiscoveryService.runDiscoveryCycle();
+  res.json(result);
+});
+
+app.get('/api/discovery/staged', (req, res) => {
+  res.json(schemeDiscoveryService.getStagedSchemes());
+});
+
+app.post('/api/discovery/approve/:id', verifyAdminPin, (req, res) => {
+  const result = schemeDiscoveryService.approveStagedScheme(req.params.id);
+  if (!result.success) return res.status(404).json(result);
+  res.json(result);
+});
+
+app.post('/api/discovery/reject/:id', verifyAdminPin, (req, res) => {
+  const { reason } = req.body;
+  const result = schemeDiscoveryService.rejectStagedScheme(req.params.id, reason);
+  if (!result.success) return res.status(404).json(result);
+  res.json(result);
+});
+
+app.get('/api/discovery/logs', (req, res) => {
+  res.json(schemeDiscoveryService.getLogs());
+});
+
+app.get('/api/discovery/history', (req, res) => {
+  res.json(schemeDiscoveryService.getHistory());
 });
 
 // ==========================================

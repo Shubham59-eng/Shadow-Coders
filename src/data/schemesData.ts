@@ -8,7 +8,7 @@ export const schemesData: Scheme[] = [
     authority: 'Ministry of Agriculture and Farmers Welfare, Govt of India',
     officialUrl: 'https://pmkisan.gov.in',
     officialSource: 'pmkisan.gov.in (PM-KISAN Portal)',
-    lastVerifiedDate: 'October 2024',
+    lastVerifiedDate: 'October 2026',
     isPopular: true,
     tags: ['farmer', 'kisan', 'subsidy', 'dbt', 'शेतकरी', 'सन्मान निधी', 'कृषि', '6000'],
     title: {
@@ -127,7 +127,7 @@ export const schemesData: Scheme[] = [
     authority: 'Agriculture Department, Government of Maharashtra',
     officialUrl: 'https://krishi.maharashtra.gov.in',
     officialSource: 'krishi.maharashtra.gov.in (Govt of Maharashtra)',
-    lastVerifiedDate: 'October 2024',
+    lastVerifiedDate: 'October 2026',
     isPopular: true,
     tags: ['namo shetkari', 'maharashtra', 'farmer', 'krishi', 'नमो शेतकरी', 'महाराष्ट्र', 'कृषी'],
     title: {
@@ -233,7 +233,7 @@ export const schemesData: Scheme[] = [
     authority: 'Women and Child Development Department, Govt of Maharashtra',
     officialUrl: 'https://ladkibahin.maharashtra.gov.in',
     officialSource: 'ladkibahin.maharashtra.gov.in (Nari Shakti Doot)',
-    lastVerifiedDate: 'October 2024',
+    lastVerifiedDate: 'October 2026',
     isPopular: true,
     tags: ['ladki bahin', 'maharashtra', 'women', 'ladli behna', '1500', 'माझी लाडकी बहीण', 'नारीशक्ती'],
     title: {
@@ -356,7 +356,7 @@ export const schemesData: Scheme[] = [
     authority: 'Ministry of Social Justice and Empowerment, Govt of India',
     officialUrl: 'https://scholarships.gov.in',
     officialSource: 'scholarships.gov.in (National Scholarship Portal)',
-    lastVerifiedDate: 'October 2024',
+    lastVerifiedDate: 'October 2026',
     isPopular: true,
     tags: ['scholarship', 'student', 'yasasvi', 'education', 'obc', 'ebc', 'dnt', 'शिष्यवृत्ती', 'छात्रवृत्ति'],
     title: {
@@ -480,7 +480,7 @@ export const schemesData: Scheme[] = [
     authority: 'Directorate of Higher & Technical Education, Govt of Maharashtra',
     officialUrl: 'https://mahadbt.maharashtra.gov.in',
     officialSource: 'mahadbt.maharashtra.gov.in (MahaDBT Portal)',
-    lastVerifiedDate: 'October 2024',
+    lastVerifiedDate: 'October 2026',
     isPopular: true,
     tags: ['shahu maharaj', 'maharashtra', 'scholarship', 'engineering', 'medical', 'mahadbt', 'राजर्षी शाहू', 'शिष्यवृत्ती'],
     title: {
@@ -603,7 +603,7 @@ export const schemesData: Scheme[] = [
     authority: 'All India Council for Technical Education (AICTE), Ministry of Education',
     officialUrl: 'https://scholarships.gov.in',
     officialSource: 'aicte-india.org / scholarships.gov.in',
-    lastVerifiedDate: 'October 2024',
+    lastVerifiedDate: 'October 2026',
     isPopular: false,
     tags: ['pragati', 'aicte', 'girls scholarship', 'engineering', 'polytechnic', 'मुलींसाठी शिष्यवृत्ती', 'छात्रा'],
     title: {
@@ -714,7 +714,7 @@ export const schemesData: Scheme[] = [
     authority: 'National Health Authority (NHA), Ministry of Health and Family Welfare',
     officialUrl: 'https://nha.gov.in',
     officialSource: 'pmjay.gov.in / nha.gov.in',
-    lastVerifiedDate: 'October 2024',
+    lastVerifiedDate: 'October 2026',
     isPopular: true,
     tags: ['ayushman bharat', 'pmjay', 'health', 'hospital', 'cashless', '5 lakh', 'आरोग्य', 'उपचार'],
     title: {
@@ -823,7 +823,7 @@ export const schemesData: Scheme[] = [
     authority: 'Public Health Department, Government of Maharashtra',
     officialUrl: 'https://jeevandayee.gov.in',
     officialSource: 'jeevandayee.gov.in (State Health Assurance Society)',
-    lastVerifiedDate: 'October 2024',
+    lastVerifiedDate: 'October 2026',
     isPopular: true,
     tags: ['mjpjay', 'maharashtra', 'jeevandayee', 'health', 'hospital', 'महात्मा फुले', 'आरोग्य योजना'],
     title: {
@@ -929,7 +929,7 @@ export const schemesData: Scheme[] = [
     authority: 'Department of Financial Services, Ministry of Finance, Govt of India',
     officialUrl: 'https://mudra.org.in',
     officialSource: 'mudra.org.in / udyamimitra.in',
-    lastVerifiedDate: 'October 2024',
+    lastVerifiedDate: 'October 2026',
     isPopular: true,
     tags: ['mudra', 'loan', 'business', 'startup', 'employment', 'कर्ज', 'उद्योग', 'मुद्रा लोन'],
     title: {
@@ -1042,7 +1042,7 @@ export const schemesData: Scheme[] = [
     authority: 'Ministry of Micro, Small and Medium Enterprises (MSME), Govt of India',
     officialUrl: 'https://pmvishwakarma.gov.in',
     officialSource: 'pmvishwakarma.gov.in (PM Vishwakarma Portal)',
-    lastVerifiedDate: 'October 2024',
+    lastVerifiedDate: 'October 2026',
     isPopular: true,
     tags: ['vishwakarma', 'artisan', 'craftsman', 'skill', 'tools', 'विश्वकर्मा', 'कारागीर', 'टूलकिट'],
     title: {
@@ -1156,7 +1156,7 @@ export const schemesData: Scheme[] = [
     authority: 'Ministry of Housing and Urban Affairs & Ministry of Rural Development',
     officialUrl: 'https://pmaymis.gov.in',
     officialSource: 'pmaymis.gov.in / pmayg.nic.in',
-    lastVerifiedDate: 'October 2024',
+    lastVerifiedDate: 'October 2026',
     isPopular: true,
     tags: ['pmay', 'housing', 'home loan', 'subsidy', 'gramin', 'urban', 'घरकुल', 'पंतप्रधान आवास', 'मकान'],
     title: {
@@ -1268,7 +1268,7 @@ export const schemesData: Scheme[] = [
     authority: 'Ministry of Rural Development, Government of India',
     officialUrl: 'https://nsap.nic.in',
     officialSource: 'nsap.nic.in (National Social Assistance Programme)',
-    lastVerifiedDate: 'October 2024',
+    lastVerifiedDate: 'October 2026',
     isPopular: false,
     tags: ['senior', 'pension', 'old age', 'nsap', 'ignoaps', 'ज्येष्ठ नागरिक', 'पेन्शन', 'वृद्धावस्था'],
     title: {
@@ -1372,7 +1372,7 @@ export const schemesData: Scheme[] = [
     authority: 'Social Justice and Special Assistance Department, Govt of Maharashtra',
     officialUrl: 'https://sjsa.maharashtra.gov.in',
     officialSource: 'sjsa.maharashtra.gov.in (Govt of Maharashtra)',
-    lastVerifiedDate: 'October 2024',
+    lastVerifiedDate: 'October 2026',
     isPopular: false,
     tags: ['sanjay gandhi', 'niradhar', 'maharashtra', 'pension', 'destitute', 'संजय गांधी', 'निराधार'],
     title: {
@@ -1485,7 +1485,7 @@ export const schemesData: Scheme[] = [
     authority: 'Ministry of Women and Child Development, Govt of India',
     officialUrl: 'https://pmmvy.wcd.gov.in',
     officialSource: 'pmmvy.wcd.gov.in (PMMVY Portal)',
-    lastVerifiedDate: 'October 2024',
+    lastVerifiedDate: 'October 2026',
     isPopular: false,
     tags: ['pmmvy', 'maternity', 'pregnant', 'women', 'mother', 'मातृत्व', 'गरोदर महिला', 'मातृ वंदना'],
     title: {
@@ -1587,7 +1587,7 @@ export const schemesData: Scheme[] = [
     authority: 'Ministry of Agriculture and Farmers Welfare, Govt of India',
     officialUrl: 'https://pmfby.gov.in',
     officialSource: 'pmfby.gov.in (PMFBY Portal)',
-    lastVerifiedDate: 'October 2024',
+    lastVerifiedDate: 'October 2026',
     isPopular: false,
     tags: ['fasal bima', 'crop insurance', 'farmer', 'pmfby', 'drought', 'पीक विमा', 'शेतकरी नुकसान'],
     title: {
@@ -1695,7 +1695,7 @@ export const schemesData: Scheme[] = [
     authority: 'Directorate of Industries, Government of Maharashtra',
     officialUrl: 'https://maha-cmegp.gov.in',
     officialSource: 'maha-cmegp.gov.in (Govt of Maharashtra)',
-    lastVerifiedDate: 'October 2024',
+    lastVerifiedDate: 'October 2026',
     isPopular: false,
     tags: ['cmegp', 'maharashtra', 'startup', 'subsidy', 'industry', 'मुख्यमंत्री रोजगार', 'उद्योग अनुदान'],
     title: {

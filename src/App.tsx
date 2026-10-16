@@ -29,6 +29,9 @@ import { RecentlyViewed } from './components/RecentlyViewed';
 import { CategorySection } from './components/CategorySection';
 import { SchemeList } from './components/SchemeList';
 import { SchemeDetailModal } from './components/SchemeDetailModal';
+import { GovernmentNotifications } from './components/GovernmentNotifications';
+import { PopularSchemesSection } from './components/PopularSchemesSection';
+import { getReadNotificationIds, VERIFIED_GOVERNMENT_NOTIFICATIONS } from './data/notificationsData';
 import { ChatAssistant } from './components/ChatAssistant';
 import { SavedSchemesModal } from './components/SavedSchemesModal';
 import { FeedbackModal } from './components/FeedbackModal';
@@ -55,8 +58,9 @@ export const App: React.FC = () => {
     return (saved as Language) || 'mr'; // Marathi by default as prominent regional language
   });
 
-  // 2. Active View Navigation ('scholarships' | 'schemes' | 'dashboard')
-  const [activeView, setActiveView] = useState<'scholarships' | 'schemes' | 'dashboard'>('dashboard');
+  // 2. Active View Navigation ('schemes' | 'notifications' | 'scholarships' | 'dashboard')
+  // Requirement 1: Open the schemes page first as default landing page
+  const [activeView, setActiveView] = useState<'schemes' | 'notifications' | 'scholarships' | 'dashboard'>('schemes');
 
   // 3. Citizen Profile & DigiLocker Session State (Sahayakon 2.0)
   const [studentProfile, setStudentProfile] = useState<StudentProfile | null>(getStoredProfile);
@@ -277,7 +281,22 @@ export const App: React.FC = () => {
     handleViewScheme(synthetic);
   };
 
-  const unreadNotificationsCount = notifications.filter((n) => !n.read).length;
+  const handleViewSchemeById = (schemeId: string) => {
+    const matchScheme = schemesData.find((s) => s.id === schemeId || s.id.includes(schemeId) || schemeId.includes(s.id));
+    if (matchScheme) {
+      handleViewScheme(matchScheme);
+      return;
+    }
+    const matchScholarship = scholarshipsList.find((s) => s.id === schemeId || s.id.includes(schemeId));
+    if (matchScholarship) {
+      setSelectedScholarship(matchScholarship);
+    }
+  };
+
+  const unreadGovNotifs = VERIFIED_GOVERNMENT_NOTIFICATIONS.filter(
+    (n) => !getReadNotificationIds().includes(n.id)
+  ).length;
+  const unreadNotificationsCount = unreadGovNotifs + notifications.filter((n) => !n.read).length;
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800 font-sans selection:bg-amber-500 selection:text-white">
@@ -513,14 +532,17 @@ export const App: React.FC = () => {
           </div>
         )}
 
-        {/* VIEW C: ALL GENERAL GOVERNMENT SCHEMES (Preserving Existing Functionality) */}
+        {/* VIEW: GOVERNMENT SCHEMES HOMEPAGE (Requirements 1 & 7) */}
         {activeView === 'schemes' && (
           <div>
-            {/* General Schemes Hero */}
+            {/* 2 & 3. Hero Section with heading "Find the Right Government Scheme for You" & Prominent Search Bar */}
             <Hero
               language={currentLanguage}
+              searchTerm={searchTerm}
               onSearch={(term) => setSearchTerm(term)}
               onOpenChat={() => setIsChatOpen(true)}
+              schemes={schemesData}
+              onViewSchemeDetails={handleViewScheme}
             />
 
             {/* Recently Viewed Schemes Bar */}
@@ -530,14 +552,35 @@ export const App: React.FC = () => {
               onViewScheme={handleViewScheme}
             />
 
-            {/* Category Explorer Grid */}
+            {/* 4. Quick Category Cards for Students, Farmers, Women, Senior Citizens, Scholarships, Employment, etc. */}
             <CategorySection
               language={currentLanguage}
               selectedCategory={selectedCategory}
               onSelectCategory={(cat) => setSelectedCategory(cat)}
             />
 
-            {/* Main Government Schemes List & Filters */}
+            {/* 5. Latest Government Notifications Section with a "View All" link */}
+            <GovernmentNotifications
+              language={currentLanguage}
+              isEmbeddedSection={true}
+              onViewSchemeDetails={handleViewSchemeById}
+              onViewAllNotifications={() => {
+                setActiveView('notifications');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            />
+
+            {/* 6 & 7. Popular Government Schemes & Recently Updated Schemes */}
+            <PopularSchemesSection
+              schemes={schemesData}
+              language={currentLanguage}
+              bookmarkedIds={savedSchemeIds}
+              onToggleBookmark={handleToggleSchemeBookmark}
+              onViewDetails={handleViewScheme}
+              onShare={handleShareScheme}
+            />
+
+            {/* 8. All Schemes with Comprehensive Search and Filters */}
             <SchemeList
               schemes={schemesData}
               language={currentLanguage}
@@ -555,6 +598,17 @@ export const App: React.FC = () => {
 
             {/* FAQs Accordion */}
             <FAQSection language={currentLanguage} />
+          </div>
+        )}
+
+        {/* VIEW: CENTRAL GOVERNMENT SCHEME NOTIFICATIONS (Requirements 5 & 6) */}
+        {activeView === 'notifications' && (
+          <div>
+            <GovernmentNotifications
+              language={currentLanguage}
+              isEmbeddedSection={false}
+              onViewSchemeDetails={handleViewSchemeById}
+            />
           </div>
         )}
 

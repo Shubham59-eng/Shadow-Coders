@@ -1,11 +1,12 @@
 import React from 'react';
-import { 
-  Bookmark, 
-  Share2, 
-  CheckCircle2, 
-  Building2, 
+import {
+  Bookmark,
+  Share2,
+  CheckCircle2,
+  Building2,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  ExternalLink,
 } from 'lucide-react';
 import type { Language, Scheme } from '../types';
 import { translations } from '../data/translations';
@@ -19,6 +20,18 @@ interface SchemeCardProps {
   onShare: (scheme: Scheme) => void;
 }
 
+const categoryGradients: Record<string, string> = {
+  students: 'from-blue-600 to-indigo-700',
+  scholarships: 'from-violet-600 to-purple-700',
+  farmers: 'from-emerald-600 to-teal-700',
+  women: 'from-pink-600 to-rose-700',
+  disability: 'from-purple-600 to-violet-700',
+  seniors: 'from-amber-600 to-yellow-700',
+  employment: 'from-indigo-600 to-blue-700',
+  healthcare: 'from-red-600 to-rose-700',
+  financial: 'from-teal-600 to-cyan-700',
+};
+
 export const SchemeCard: React.FC<SchemeCardProps> = ({
   scheme,
   language,
@@ -28,105 +41,120 @@ export const SchemeCard: React.FC<SchemeCardProps> = ({
   onShare,
 }) => {
   const t = translations[language].schemesList;
-
   const categoryName = translations[language].categories.items[scheme.category]?.name || scheme.category;
-
-  const levelBadgeClass = scheme.level === 'Maharashtra' 
-    ? 'bg-amber-50 text-amber-900 border-amber-300'
-    : 'bg-blue-50 text-blue-900 border-blue-200';
+  const gradientClass = categoryGradients[scheme.category] || 'from-indigo-600 to-violet-700';
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 hover:border-slate-300 hover:shadow-xl transition-all duration-200 flex flex-col justify-between overflow-hidden group">
-      {/* Top Banner with Badges */}
-      <div className="p-5 pb-4">
+    <div className="group relative rounded-2xl border border-white/8 bg-white/4 backdrop-blur-sm hover:bg-white/8 hover:border-indigo-500/30 transition-all duration-300 card-lift flex flex-col overflow-hidden">
+
+      {/* ── Gradient Top Bar ── */}
+      <div className={`h-1 w-full bg-gradient-to-r ${gradientClass}`} />
+
+      {/* ── Shimmer on hover ── */}
+      <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl" />
+
+      {/* ── Card Body ── */}
+      <div className="relative z-10 p-5 pb-4 flex-1">
+        {/* Badges Row */}
         <div className="flex items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-1.5 flex-wrap">
-            {/* Category Pill */}
-            <span className="text-2xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700">
+            <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white/8 text-slate-400 border border-white/8">
               {categoryName}
             </span>
-
-            {/* Level Badge (Central / Maharashtra) */}
-            <span className={`text-2xs font-semibold px-2 py-0.5 rounded-full border ${levelBadgeClass}`}>
-              {scheme.level === 'Maharashtra' ? 'महाराष्ट्र शासन' : 'भारत सरकार (Central)'}
+            <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${
+              scheme.level === 'Maharashtra'
+                ? 'border-amber-500/30 bg-amber-500/10 text-amber-300'
+                : 'border-indigo-500/30 bg-indigo-500/10 text-indigo-300'
+            }`}>
+              {scheme.level === 'Maharashtra' ? 'महाराष्ट्र' : 'भारत सरकार'}
             </span>
           </div>
 
-          {/* Bookmark & Share Actions */}
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 shrink-0">
             <button
               onClick={() => onShare(scheme)}
               title={t.share}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+              className="p-1.5 rounded-lg text-slate-500 hover:text-slate-200 hover:bg-white/10 transition-colors cursor-pointer"
             >
-              <Share2 className="w-4 h-4" />
+              <Share2 className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={() => onToggleBookmark(scheme.id)}
               title={isBookmarked ? t.bookmarked : t.bookmark}
               className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                isBookmarked 
-                  ? 'text-amber-500 bg-amber-50 hover:bg-amber-100' 
-                  : 'text-slate-400 hover:text-amber-500 hover:bg-slate-100'
+                isBookmarked
+                  ? 'text-amber-400 bg-amber-500/15 hover:bg-amber-500/25'
+                  : 'text-slate-500 hover:text-amber-400 hover:bg-white/10'
               }`}
             >
-              <Bookmark className={`w-4 h-4 ${isBookmarked ? 'fill-amber-500' : ''}`} />
+              <Bookmark className={`w-3.5 h-3.5 ${isBookmarked ? 'fill-amber-400' : ''}`} />
             </button>
           </div>
         </div>
 
-        {/* Scheme Title */}
-        <h3 
+        {/* Title */}
+        <h3
           onClick={() => onViewDetails(scheme)}
-          className="text-lg font-bold text-slate-900 group-hover:text-blue-900 transition-colors cursor-pointer leading-snug line-clamp-2 mb-2"
+          className="text-base font-bold text-white group-hover:text-indigo-300 transition-colors cursor-pointer leading-snug line-clamp-2 mb-2"
         >
           {scheme.title[language]}
         </h3>
 
-        {/* Short Description */}
-        <p className="text-xs text-slate-600 leading-relaxed line-clamp-3 mb-4">
+        {/* Description */}
+        <p className="text-xs text-slate-400/80 leading-relaxed line-clamp-3 mb-4">
           {scheme.shortDescription[language]}
         </p>
 
-        {/* Key Highlight Banner */}
+        {/* Key Highlight */}
         {scheme.keyHighlight && (
-          <div className="p-2.5 rounded-xl bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50/70 border border-emerald-200/80 flex items-start gap-2 mb-3">
-            <Sparkles className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+          <div className="p-3 rounded-xl bg-emerald-500/8 border border-emerald-500/20 flex items-start gap-2 mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
             <div>
-              <span className="text-2xs font-bold text-emerald-900 uppercase tracking-wide block">
+              <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wide block mb-0.5">
                 {t.keyHighlightLabel}
               </span>
-              <span className="text-xs font-bold text-emerald-800">
+              <span className="text-xs font-semibold text-emerald-300">
                 {scheme.keyHighlight[language]}
               </span>
             </div>
           </div>
         )}
 
-        {/* Issuing Authority */}
-        <div className="flex items-center gap-1.5 text-2xs text-slate-500 mb-2">
-          <Building2 className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+        {/* Authority */}
+        <div className="flex items-center gap-1.5 text-[10px] text-slate-500">
+          <Building2 className="w-3.5 h-3.5 shrink-0" />
           <span className="truncate">{scheme.authority}</span>
         </div>
       </div>
 
-      {/* Card Footer with Verification & View Details Button */}
-      <div className="px-5 py-3.5 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-3">
-        {/* Verification Status */}
-        <div className="flex items-center gap-1 text-2xs text-slate-500">
-          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+      {/* ── Card Footer ── */}
+      <div className="relative z-10 px-5 py-3.5 border-t border-white/6 bg-white/3 flex items-center justify-between gap-3">
+        <div className="flex items-center gap-1 text-[10px] text-slate-500">
+          <CheckCircle2 className="w-3 h-3 text-emerald-500 shrink-0" />
           <span>{scheme.lastVerifiedDate}</span>
         </div>
-
-        {/* Primary View Details Button */}
         <button
           onClick={() => onViewDetails(scheme)}
-          className="inline-flex items-center gap-1 text-xs font-bold text-blue-900 hover:text-amber-600 transition-colors cursor-pointer group-hover:translate-x-0.5"
+          className="inline-flex items-center gap-1 text-xs font-bold text-indigo-300 hover:text-amber-300 transition-colors cursor-pointer group/btn"
         >
           <span>{t.viewDetails}</span>
-          <ArrowRight className="w-3.5 h-3.5" />
+          <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
         </button>
       </div>
+
+      {/* Official link indicator */}
+      {(scheme as { officialSourceUrl?: string }).officialSourceUrl && (
+        <a
+          href={(scheme as { officialSourceUrl?: string }).officialSourceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="absolute top-3 right-12 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded text-slate-500 hover:text-indigo-300"
+          title="Official Portal"
+        >
+          <ExternalLink className="w-3 h-3" />
+        </a>
+      )}
     </div>
   );
 };

@@ -12,27 +12,26 @@ export const SafetyBanner: React.FC<SafetyBannerProps> = ({ language, onOpenPriv
   const t = translations[language].safetyBanner;
 
   return (
-    <div className="bg-gradient-to-r from-amber-50 via-orange-50 to-amber-100/70 border-y border-amber-200/80 px-4 py-3 sm:py-3.5">
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs sm:text-sm">
+    <div className="relative overflow-hidden border-y border-amber-500/20 bg-gradient-to-r from-amber-500/10 via-orange-500/8 to-amber-500/10 backdrop-blur-sm">
+      {/* Subtle animated shimmer */}
+      <div className="absolute inset-0 shimmer opacity-50 pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs sm:text-sm">
         <div className="flex items-start sm:items-center gap-2.5">
-          <div className="p-1.5 rounded-lg bg-amber-500 text-white shrink-0 mt-0.5 sm:mt-0 shadow-xs">
+          <div className="p-1.5 rounded-lg bg-amber-500/20 border border-amber-500/30 text-amber-300 shrink-0 mt-0.5 sm:mt-0">
             <ShieldAlert className="w-4 h-4" />
           </div>
           <div>
-            <span className="font-bold text-amber-950 mr-1.5 flex-wrap">
-              {t.title}
-            </span>
-            <span className="text-amber-900 font-medium leading-relaxed">
-              {t.description}
-            </span>
+            <span className="font-bold text-amber-200 mr-1.5">{t.title}</span>
+            <span className="text-amber-200/70 font-medium leading-relaxed">{t.description}</span>
           </div>
         </div>
 
         <button
           onClick={onOpenPrivacy}
-          className="inline-flex items-center gap-1 font-bold text-blue-900 hover:text-blue-700 bg-white/80 hover:bg-white px-3 py-1.5 rounded-md border border-amber-300 shadow-2xs shrink-0 transition-colors cursor-pointer text-xs"
+          className="inline-flex items-center gap-1.5 font-bold text-amber-200 hover:text-white bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 px-3 py-1.5 rounded-lg shrink-0 transition-all cursor-pointer text-xs"
         >
-          <Lock className="w-3.5 h-3.5 text-blue-800" />
+          <Lock className="w-3.5 h-3.5" />
           <span>{t.learnMore}</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </button>
